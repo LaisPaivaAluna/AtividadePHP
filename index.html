@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados dos Exercícios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 18px;
+        }
+        h1 {
+            font-size: 24px; 
+        }
+        .exercise {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Resultados dos Exercícios</h1>
+
+<?php
+
+for ($i = 1; $i <= 10; $i++) {
+    $file = "exe{$i}.php";
+    
+    
+    if (file_exists($file)) {
+        echo "<div class='exercise'>";
+        echo "<h2>Exercício $i</h2>";
+        
+       
+        echo "<pre>";
+        echo htmlspecialchars(file_get_contents($file));
+        echo "</pre>";
+        
+       
+        include $file;
+        echo "</div>";
+    } else {
+        echo "<div class='exercise'><p>Arquivo $file não encontrado.</p></div>";
+    }
+}
+?>
+
+</body>
+</html>
